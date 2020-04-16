@@ -17,7 +17,7 @@ namespace TicTacToe.ViewModel
 
             for (int i = 0; i < 9; i++)
             {
-                var bsquare = new BigSquare();
+                var bsquare = new BigSquare(i);
                 bsquare.Column = i % 3;
                 bsquare.Row = i / 3;
                 //bsquare.Winner = $"Index: {i}";
@@ -31,15 +31,22 @@ namespace TicTacToe.ViewModel
     class BigSquare
     {
         public string Winner { get; }
+        public bool IsEnalble
+        {
+            get
+            {
+                return string.IsNullOrEmpty(Winner);
+            }
+        }
 
         public int Row { get; set; }
         public int Column { get; set; }
         public List<SmallSquare> SmallSquares { get; set; } = new List<SmallSquare>();
-        public BigSquare()
+        public BigSquare(int bigSquareIndex)
         {
             for (int i = 0; i < 9; i++)
             {
-                var smallSquare = new SmallSquare(i);
+                var smallSquare = new SmallSquare(bigSquareIndex);
                 smallSquare.Column = i % 3;
                 smallSquare.Row = i / 3;
                 //smallSquare.CurrentPlayer = $"Index: {i}";
@@ -51,9 +58,14 @@ namespace TicTacToe.ViewModel
 
     class SmallSquare
     {
+        public string CurrentPlayer { get; set; }
         //public bool IsFirstPlayer;
         public int Row { get; set; }
         public int Column { get; set; }
+
+        private string _ContentButton;
+        public string ContentButton { get => _ContentButton; set { _ContentButton = value; } }
+
         public ICommand TickCommand { get; set; }
 
         public int BigSquareIndex { get; }
@@ -62,7 +74,7 @@ namespace TicTacToe.ViewModel
         {
             TickCommand = new RelayCommand<object>((p) => { return true; }, (button) => {
 
-                MessageBox.Show("test"+ BigSquareIndex);
+                //ContentButton = "X";
 
             });
 
@@ -73,7 +85,7 @@ namespace TicTacToe.ViewModel
         {
             get
             {
-                return string.IsNullOrEmpty("");
+                return string.IsNullOrEmpty(CurrentPlayer);
             }
         }
 

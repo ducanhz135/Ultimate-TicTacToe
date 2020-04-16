@@ -70,7 +70,8 @@
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button IsEnabled="{Binding IsEnable}"
+                                <Button Content="{Binding ContentButton, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    IsEnabled="{Binding IsEnable}"
                                     Command="{Binding TickCommand}"
                                     CommandParameter="{Binding}"></Button>
                             </DataTemplate>
