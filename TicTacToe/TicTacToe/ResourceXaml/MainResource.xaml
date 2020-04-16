@@ -2,5 +2,5 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:viewmodel="clr-namespace:TicTacToe.ViewModel"
                     xmlns:local="clr-namespace:TicTacToe.ResourceXaml">
-    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:GameViewModel x:Key="GameVM"></viewmodel:GameViewModel>
 </ResourceDictionary>
